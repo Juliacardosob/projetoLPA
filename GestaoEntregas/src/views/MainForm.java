@@ -1,3 +1,5 @@
+package models;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -57,7 +59,7 @@ public class MainForm extends JFrame implements ActionListener  { // Herda todos
 		
 		
 		// Parte da Imagem
-		fundo = new ImageIcon(".\\img\\imgEntrega.jpg");
+		fundo = new ImageIcon("..\\img\\imgEntrega.jpg");
 		lbFundo = new JLabel();
 		lbFundo.setIcon(fundo);
 		lbFundo.setBounds(20,15,850,650); // x,y, largura, altura
@@ -77,6 +79,8 @@ public class MainForm extends JFrame implements ActionListener  { // Herda todos
 			EntregaForm enf = new EntregaForm();
 			enf.setVisible(true);
 		} else if (e.getSource() == itemRelatorios) { // Relatórios
+			Relatorio rf = new Relatorio ();
+			rf.setVisible(true);
 			System.out.println("Relatórios");			
 		} else if (e.getSource() == itemSair) { // Sair
 			dispose();		
@@ -88,4 +92,4 @@ public class MainForm extends JFrame implements ActionListener  { // Herda todos
 		MainForm mainform = new MainForm();
 		mainform.setVisible(true);
 	}
-}
+} 
