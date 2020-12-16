@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+<<<<<<< HEAD
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,12 +19,22 @@ import controllers.ProcessaRelatorio;
 import models.Entrega;
 
 public class RelatorioForm extends JDialog implements ActionListener {
+=======
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class RelatorioForm extends JDialog implements ActionListener{
+>>>>>>> 3bd606e2b86d6c2c7e50b651d8182647e3b4a63d
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JTextArea areaDeTexto;
 	private JScrollPane scroll; 
 	private JButton jbSalvar;
+<<<<<<< HEAD
 	private String relatorio;
+=======
+>>>>>>> 3bd606e2b86d6c2c7e50b651d8182647e3b4a63d
 
 	RelatorioForm(){
 		setTitle("Relatório de Entrega");
@@ -32,6 +43,7 @@ public class RelatorioForm extends JDialog implements ActionListener {
 		setContentPane(panel);
 		setLayout(null);
 
+<<<<<<< HEAD
 		
 		
 		//Fazer o relatorio
@@ -60,6 +72,18 @@ public class RelatorioForm extends JDialog implements ActionListener {
 				jbSalvar.setBounds(570,372,100,30);
 				panel.add(jbSalvar);
 				jbSalvar.addActionListener(this);
+=======
+		// Declaração dos componentes do relatório
+		areaDeTexto = new JTextArea("TEXTO DO RELATÓRIO AQUI");
+		scroll = new JScrollPane(areaDeTexto);
+		scroll.setBounds(10,10,665,360);
+		panel.add(scroll);
+
+		jbSalvar = new JButton("Salvar");
+		jbSalvar.setBounds(570,372,100,30);
+		panel.add(jbSalvar);
+		jbSalvar.addActionListener(this);
+>>>>>>> 3bd606e2b86d6c2c7e50b651d8182647e3b4a63d
 
 	}
 
@@ -67,6 +91,7 @@ public class RelatorioForm extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == jbSalvar) {
+<<<<<<< HEAD
 			
 			JFileChooser fc = new JFileChooser();
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("Selecione apenas TXT", "txt");
@@ -86,4 +111,10 @@ public class RelatorioForm extends JDialog implements ActionListener {
 		}
 	}
 
+=======
+			System.out.println("Entrei pelo botão salvar");
+		}
+
+	}
+>>>>>>> 3bd606e2b86d6c2c7e50b651d8182647e3b4a63d
 }

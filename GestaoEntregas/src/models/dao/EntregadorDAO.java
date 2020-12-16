@@ -36,7 +36,11 @@ public class EntregadorDAO {
 	}
 
 	public ArrayList<Entregador> retornar(){
+<<<<<<< HEAD
 		ArrayList<Entregador> entregadores = new ArrayList<Entregador>();
+=======
+		ArrayList<Entregador> entregadores = new ArrayList<Carteira>();
+>>>>>>> 3bd606e2b86d6c2c7e50b651d8182647e3b4a63d
 		String[] campos;
 		Entregador entregador;
 
@@ -51,11 +55,17 @@ public class EntregadorDAO {
 				entregador = new Entregador();
 				entregador.setId(Integer.parseInt(campos[0]));
 				entregador.setNome(campos[1]);
+<<<<<<< HEAD
 				entregador.setHabilitacao(campos[2]);
 				entregador.setTelefone(campos[3]);
 				entregador.setVeiculo(campos[4]);
 				entregador.setValorKM(Double.parseDouble(campos[5]));
 				
+=======
+				entregador.setPerfilDeInvestimento(campos[2]);
+				entregador.setLucroEsperado(Double.parseDouble(campos[3]));
+				entregador.setPrejuizoMaximo(Double.parseDouble(campos[4]));
+>>>>>>> 3bd606e2b86d6c2c7e50b651d8182647e3b4a63d
 				entregadores.add(entregador);
 				linha = br.readLine();
 			}
@@ -69,6 +79,7 @@ public class EntregadorDAO {
 		return entregadores;
 
 	}
+<<<<<<< HEAD
 	
 	public static void main(String[] args) {
 		ArrayList<Entregador> entregadores = new ArrayList<Entregador>();
@@ -86,4 +97,7 @@ public class EntregadorDAO {
 		if(!entregadorDAO.salvar(entregadores))
 			System.out.printf("Erro ao salvar");
 	}
+=======
+
+>>>>>>> 3bd606e2b86d6c2c7e50b651d8182647e3b4a63d
 }

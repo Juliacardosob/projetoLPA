@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package views;
+=======
+package models;
+>>>>>>> 3bd606e2b86d6c2c7e50b651d8182647e3b4a63d
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,7 +64,11 @@ public class MainForm extends JFrame implements ActionListener  { // Herda todos
 		
 		
 		// Parte da Imagem
+<<<<<<< HEAD
 		fundo = new ImageIcon(".\\img\\boneco.png");
+=======
+		fundo = new ImageIcon("..\\img\\imgEntrega.jpg");
+>>>>>>> 3bd606e2b86d6c2c7e50b651d8182647e3b4a63d
 		lbFundo = new JLabel();
 		lbFundo.setIcon(fundo);
 		lbFundo.setBounds(20,15,850,650); // x,y, largura, altura
@@ -79,9 +87,14 @@ public class MainForm extends JFrame implements ActionListener  { // Herda todos
 			enf.setVisible(true);
 			
 		} else if (e.getSource() == itemRelatorios) { // Relatórios
+<<<<<<< HEAD
 			RelatorioForm rf = new RelatorioForm ();
 			rf.setVisible(true);
 			
+=======
+			Relatorio rf = new Relatorio ();
+			rf.setVisible(true);
+>>>>>>> 3bd606e2b86d6c2c7e50b651d8182647e3b4a63d
 			System.out.println("Relatórios");			
 		} else if (e.getSource() == itemSair) { // Sair
 			dispose();		
