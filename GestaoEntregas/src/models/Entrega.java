@@ -56,29 +56,31 @@ public class Entrega {
 	
 	@Override
 	public String toString() {
-		return "Entrega [id=" + id + ", kmRodado=" + kmRodado + ", data=" + data + ", hora=" + hora + ", endereco="
-				+ endereco + ", entregador=" + entregador.getId() + "]";
+		return "Entrega [id=" + id + ", entregador=" + entregador.getId() + ", data=" + data + ", hora=" + hora + ", endereco="
+				+ endereco + ", kmRodado=" + kmRodado + "]";
 	}
 	
 	public String toCSV () {
-		return id + ";" + entregador.getId() + ";" + kmRodado + ";" + data + ";" + hora
-				+ ";" + endereco + "]";
+		return id + ";" + entregador.getId() +  ";" + data + ";" + hora
+				+ ";" + endereco +  ";" + kmRodado + "\n";
 	}
 	
 	public String [] toVetor() {
 		String [] vetorString = new String  [6];
 		vetorString [0] = Integer.toString (id);
 		vetorString [1] = Integer.toString (entregador.getId());
-		vetorString [2] = Integer.toString (kmRodado);
-		vetorString [3] = data;
-		vetorString [4] = hora;
-		vetorString [5] = endereco;
+		vetorString [2] = data;
+		vetorString [3] = hora;
+		vetorString [4] = endereco;
+		vetorString [5] = Integer.toString (kmRodado);
+		
+		
 		return vetorString;
 	}
 	
 	public String toHTML () {
-		return "<tr><td>" + id + "</td><td>" + entregador + "</td><td>" + kmRodado + "</td><td>" + data + "</td><td>" + hora
-				+ "</td><td>=" + endereco + "</td></tr>";
+		return "<tr><td>" + id + "</td><td>" + entregador + "</td><td>" +  data + "</td><td>" + hora
+				+ "</td><td>=" + endereco + "</td><td>" + kmRodado +"</td></tr>";
 	}
 	
 	double getSubtotal() {

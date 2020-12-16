@@ -1,14 +1,21 @@
+package views;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import controllers.ProcessaEntregador;
+import models.Entregador;
 
 public class EntregadorForm extends JDialog implements ActionListener{
 
@@ -20,9 +27,14 @@ public class EntregadorForm extends JDialog implements ActionListener{
 	private JScrollPane scroll;
 	private DefaultTableModel tableModel;
 	private JButton jbAdd, jbDel, jbCancelar, jbSalvar;
+	private Entregador entregador;
+	private int id;
 	
 	
 	EntregadorForm(){
+		
+		id = ProcessaEntregador.getAutoId();
+		
 		// Definições da Janela
 		setTitle("Cadastro do Entregador");
 		setBounds(250,160,597,410);
@@ -38,6 +50,7 @@ public class EntregadorForm extends JDialog implements ActionListener{
 		// Criando TextField
 		tfId = new JTextField();
 		tfId.setBounds(10,30,40,25);
+		tfId.setText(String.format("%d", id));
 		panel.add(tfId);
 		
 		tfNome = new JTextField();
@@ -96,19 +109,78 @@ public class EntregadorForm extends JDialog implements ActionListener{
 		jbSalvar.addActionListener(this);
 		panel.add(jbSalvar);
 		
+		// Adicionar as informações do BD na view do usuário
+		if(!ProcessaEntregador.getArray().isEmpty()) {// Verifica se o BD não está vazio
+			for(Entregador e : ProcessaEntregador.getArray() ) {
+				tableModel.addRow(e.toVetor());
+			}
+		}
+		
 	}
+	
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbAdd) {
-			System.out.println("Add");
+			if(!tfNome.getText().isEmpty() 
+					&& !tfTelefone.getText().isEmpty() 
+					&& !tfHabilitacao.getText().isEmpty() 
+					&& !tfVeiculo.getText().isEmpty() 
+					&& !tfValorKM.getText().isEmpty()) {// Avaliar se todos os campos foram inseridos
+					
+				// Utiliza a Classe Carteira DAO para inserir os dados na tabela
+				entregador = new Entregador();
+				
+				entregador.setId(id);
+				entregador.setNome(tfNome.getText());
+				entregador.setTelefone(tfTelefone.getText());
+				entregador.setHabilitacao(tfHabilitacao.getText());
+				entregador.setVeiculo(tfVeiculo.getText());
+				entregador.setValorKM(Double.parseDouble(tfValorKM.getText()));
+				tableModel.addRow(entregador.toVetor());
+				
+				//Limpar os campos text field
+				id++;
+				tfId.setText(String.format("%d", id));
+				tfNome.setText("");
+				tfTelefone.setText("");
+				tfHabilitacao.setText("");
+				tfVeiculo.setText("");
+				tfValorKM.setText("");
+			}
+			
 		} else if (e.getSource() == jbDel) {
-			System.out.println("Del");
-		} else if (e.getSource() == jbCancelar) {
-			System.out.println("Cancelar");
-		} else if (e.getSource() == jbSalvar) {
-			System.out.println("Salvar");
+			if(table.getSelectedRow()>=0) {
+				tableModel.removeRow(table.getSelectedRow());
+			}else {
+				JOptionPane.showInternalMessageDialog(null, "Selecione uma linha para remover.");
+			}
+						
+		} else if (e.getSource() == jbCancelar) { // Ao clicar no botão Cancelar
+			dispose();			
+		} else if (e.getSource() == jbSalvar) { // Ao clicar no botão salvar
+			ArrayList<Entregador> entregadores = new ArrayList<>();
+			
+			
+			for (int i=0;i<tableModel.getRowCount();i++) {
+				entregador = new Entregador();
+				entregador.setId(Integer.parseInt((String)tableModel.getValueAt(i,0)));
+				entregador.setNome((String)tableModel.getValueAt(i, 1));
+				entregador.setTelefone((String)tableModel.getValueAt(i, 2));
+				entregador.setHabilitacao((String)tableModel.getValueAt(i, 3));
+				entregador.setVeiculo((String)tableModel.getValueAt(i, 4));
+				entregador.setValorKM(Double.parseDouble((String)tableModel.getValueAt(i, 5)));
+				
+				entregadores.add(entregador);
+				
+			}
+			
+			ProcessaEntregador.setArray(entregadores);
+			JOptionPane.showMessageDialog(null,"Entregas salvo com sucesso!");
+			dispose();
 		}
 	}
 
 }
+

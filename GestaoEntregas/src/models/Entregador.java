@@ -43,29 +43,29 @@ public class Entregador {
 	}
 	@Override
 	public String toString() {
-		return "Entregador [id=" + id + ", valorKM=" + valorKM + ", nome=" + nome + ", telefone=" + telefone
-				+ ", habilitacao=" + habilitacao + ", veiculo=" + veiculo + "]";
+		return "Entregador [id=" + id  + ", nome=" + nome + ", telefone=" + telefone
+				+ ", habilitacao=" + habilitacao + ", veiculo=" + veiculo + ", valorKM=" + valorKM + "]";
 	}
 	
 	public String toCSV() {
-		return id + ";" + valorKM + ";" + nome + ";" + telefone
-				+ ";" + habilitacao + ";" + veiculo + "]";
+		return id  + ";" + nome + ";" + telefone
+				+ ";" + habilitacao + ";" + veiculo + ";" + valorKM + "\n";
 	}
 	
 	public String [] toVetor() {
 		String [] vetorString = new String  [6];
 		//vetorString = [id, valorKM, nome, telefone, habilitacao, veiculo];
 		vetorString [0] = Integer.toString (id);
-		vetorString [1] = Double.toString (valorKM);
-		vetorString [2] = nome;
-		vetorString [3] = telefone;
-		vetorString [4] = habilitacao;
-		vetorString [5] = veiculo;
+		vetorString [1] = nome;
+		vetorString [2] = telefone;
+		vetorString [3] = habilitacao;
+		vetorString [4] = veiculo;
+		vetorString [5] = Double.toString (valorKM);
 		return vetorString;
 	}
 	
 	public String toHTML () {
-		return "<tr><td>" + id + "</td><td>" + valorKM + "</td><td>" + nome + "</td><td>" + telefone
-				+ "</td><td>=" + habilitacao + "</td><td>" + veiculo + "</td></tr>";
+		return "<tr><td>" + id + "</td><td>"  + "</td><td>" + nome + "</td><td>" + telefone
+				+ "</td><td>=" + habilitacao + "</td><td>" + veiculo + valorKM + "</td></tr>";
 	}
 }
